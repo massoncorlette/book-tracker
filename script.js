@@ -19,13 +19,15 @@ function addBookToLibrary() {
   
   myLibrary.push(addedBook);
 
-  myLibrary.forEach(book => {
-    const newDiv = document.createElement('div');
-  
-    newDiv.innerHTML = `Title: ${book.title}, Author: ${book.author}`;
-    bookList.appendChild(newDiv);
-  });
+  const newDiv = document.createElement('div');
+
+  newDiv.classList.add('bookCards');
+
+  newDiv.innerHTML = `Title: ${title}, Author: ${author}`;
+  bookList.appendChild(newDiv);
 }
+
+
 
 showButton.addEventListener("click", () => {
   dialog.showModal();
