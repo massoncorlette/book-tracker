@@ -16,6 +16,8 @@ body {
 #main-container {
   grid-column: span 10;
   grid-row: span 9;
+  overflow:auto;
+  background-color: bisque;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -32,12 +34,13 @@ body {
   min-height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 30px;
 }
 
 .bookCards {
   background-color: aquamarine;
-  height: 200px;
+  height: 150px;
+  border-radius: 30px;
 }
 
 form {

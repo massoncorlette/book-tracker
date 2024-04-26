@@ -28,7 +28,6 @@ function addBookToLibrary() {
 }
 
 
-
 showButton.addEventListener("click", () => {
   dialog.showModal();
 });
