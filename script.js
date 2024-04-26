@@ -4,6 +4,7 @@ const closeButton = document.querySelector("#closebtn");
 const addBook = document.querySelector("#addbook");
 const bookList = document.querySelector("#booklist");
 let totalPages = 0;
+let totalBooks = 0;
 
 const myLibrary = [];
 
@@ -18,12 +19,14 @@ function addBookToLibrary() {
   const title = document.querySelector("#title").value;
   const pagenum = document.querySelector("#pagenum").value;
   const pageCount = document.querySelector("#pageCount");
-  
+  const bookCount = document.querySelector("#bookCount");
+
   const addedBook = new Book(author, title, pagenum);
   
   myLibrary.push(addedBook);
   const pageNumInt = parseInt(pagenum);
   totalPages += pageNumInt;
+  totalBooks += 1;
 
   const titleDiv = document.createElement('div');
   const authorDiv = document.createElement('div');
@@ -36,6 +39,7 @@ function addBookToLibrary() {
   authorDiv.innerHTML = `Author: ${author}`;
   pageDiv.innerHTML = `Page Count: ${pagenum}`;
   pageCount.innerHTML = totalPages;
+  bookCount.innerHTML = totalBooks;
 
   cardDiv.appendChild(titleDiv);
   cardDiv.appendChild(authorDiv);

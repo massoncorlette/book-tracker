@@ -11,8 +11,16 @@
   <div id="header">
     <h1>Book Tracker</h1>
     <button id="addbtn">+</button>
-    <p>Total Pages Read: </p>
-    <div id="pageCount"></div>
+    <div id="bookstats">
+      <div class="stat">
+        <p>Total Books Read: </p>
+        <div id="bookCount"></div>
+      </div>
+      <div class=stat>
+        <p>Total Pages Read: </p>
+        <div id="pageCount"></div>
+      </div>
+    </div>
   </div>
   <main id="main-container">
     <dialog>
@@ -33,7 +41,6 @@
         <button id="addbook">add book</button>
       </form>
     </dialog>
-
     <div id="booklist"></div>
   </main>
   
