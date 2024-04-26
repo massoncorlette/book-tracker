@@ -10,24 +10,30 @@
 <body>
   <div id="header">
     <h1>Book Tracker</h1>
+    <button id="addbtn">+</button>
+    <p>Total Pages Read: </p>
+    <div id="pageCount"></div>
   </div>
   <main id="main-container">
     <dialog>
       <legend>Add a book</legend>
         <div class="formcontainer">
-          </div>
+          <div>
             <input type="text"  id="title" placeholder="Title">
           </div>
-          </div>
+          <div>
             <input type="text" id="author" placeholder="Author">
-          </div>          
+          </div>   
+          <div>
+            <input type="number" id="pagenum" placeholder="Pages Read">
+          </div>       
         </div>
       <form method="dialog">
         <button id="closebtn">close</button>
         <button id="addbook">add book</button>
       </form>
     </dialog>
-    <button id="addbtn">+</button>
+
     <div id="booklist"></div>
   </main>
   

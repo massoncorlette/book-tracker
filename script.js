@@ -1,30 +1,47 @@
 const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("dialog + button");
+const showButton = document.querySelector("#addbtn");
 const closeButton = document.querySelector("#closebtn");
 const addBook = document.querySelector("#addbook");
 const bookList = document.querySelector("#booklist");
+let totalPages = 0;
 
 const myLibrary = [];
 
-function Book(title, author) {
+function Book(title, author, pages) {
   this.title = title;
   this.author = author;
+  this.pages = pages;
 }
 
 function addBookToLibrary() {
   const author = document.querySelector("#author").value;
   const title = document.querySelector("#title").value;
+  const pagenum = document.querySelector("#pagenum").value;
+  const pageCount = document.querySelector("#pageCount");
   
-  const addedBook = new Book(author, title);
+  const addedBook = new Book(author, title, pagenum);
   
   myLibrary.push(addedBook);
+  const pageNumInt = parseInt(pagenum);
+  totalPages += pageNumInt;
 
-  const newDiv = document.createElement('div');
+  const titleDiv = document.createElement('div');
+  const authorDiv = document.createElement('div');
+  const pageDiv = document.createElement('div');
+  const cardDiv = document.createElement('div');
 
-  newDiv.classList.add('bookCards');
+  cardDiv.classList.add('bookCards');
 
-  newDiv.innerHTML = `Title: ${title}, Author: ${author}`;
-  bookList.appendChild(newDiv);
+  titleDiv.innerHTML = `Title: ${title}`;
+  authorDiv.innerHTML = `Author: ${author}`;
+  pageDiv.innerHTML = `Page Count: ${pagenum}`;
+  pageCount.innerHTML = totalPages;
+
+  cardDiv.appendChild(titleDiv);
+  cardDiv.appendChild(authorDiv);
+  cardDiv.appendChild(pageDiv);
+  
+  bookList.appendChild(cardDiv);
 }
 
 
