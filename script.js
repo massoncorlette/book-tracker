@@ -32,8 +32,15 @@ function addBookToLibrary() {
   const authorDiv = document.createElement('div');
   const pageDiv = document.createElement('div');
   const cardDiv = document.createElement('div');
+  const sliderDiv = document.createElement('div');
+  const label = document.createElement('label');
+  const input = document.createElement('input');
+  const span = document.createElement('span');
 
   cardDiv.classList.add('bookCards');
+  label.classList.add('switch');
+  input.setAttribute('type', 'checkbox');
+  span.classList.add('slider');
 
   titleDiv.innerHTML = `Title: ${title}`;
   authorDiv.innerHTML = `Author: ${author}`;
@@ -44,6 +51,11 @@ function addBookToLibrary() {
   cardDiv.appendChild(titleDiv);
   cardDiv.appendChild(authorDiv);
   cardDiv.appendChild(pageDiv);
+
+  label.appendChild(input);
+  label.appendChild(span);
+  sliderDiv.appendChild(label);
+  cardDiv.appendChild(sliderDiv);
   
   bookList.appendChild(cardDiv);
 }

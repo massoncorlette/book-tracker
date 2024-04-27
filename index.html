@@ -24,8 +24,13 @@
   </div>
   <main id="main-container">
     <dialog>
+      <div id="close">
+        <form method="dialog">
+          <button id="closebtn">x</button>
+        </form>
+      </div>
       <legend>Add a book</legend>
-        <div class="formcontainer">
+        <div id="formcontainer">
           <div>
             <input type="text"  id="title" placeholder="Title">
           </div>
@@ -37,7 +42,6 @@
           </div>       
         </div>
       <form method="dialog">
-        <button id="closebtn">close</button>
         <button id="addbook">add book</button>
       </form>
     </dialog>
