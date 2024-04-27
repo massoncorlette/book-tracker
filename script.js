@@ -27,7 +27,6 @@ function addBookToLibrary() {
   myLibrary.push(addedBook);
 
   totalPages += pageNumInt;
-  totalBooks += 1;
 
   const titleDiv = document.createElement('div');
   const authorDiv = document.createElement('div');
@@ -48,7 +47,7 @@ function addBookToLibrary() {
   authorDiv.innerHTML = `Author: ${author}`;
   pageDiv.innerHTML = `Page Count: ${pagenum}`;
   pageCount.innerHTML = totalPages;
-  bookCount.innerHTML = totalBooks;
+  
   // adding the divs w added html to parent cardDiv
   cardDiv.appendChild(titleDiv);
   cardDiv.appendChild(authorDiv);
@@ -63,19 +62,25 @@ function addBookToLibrary() {
 
   const allcardDivs = document.querySelectorAll('.bookCards');
 
-  //for every bookcard, if the toggle is switched change background color
+  // for every bookcard, if the toggle is switched change background color
   allcardDivs.forEach(cardDiv => {
     const checkbox = cardDiv.querySelector('.toggleContainer .switch input');
-  
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        cardDiv.style.backgroundColor = 'rgba(66, 245, 87, 0.5)';
-      } else {
-        cardDiv.style.backgroundColor = '';
-      }
-    });
+  // added custom property toggled to make sure doesn't loop through all cards
+    if (!checkbox.toggled) {
+      checkbox.toggled = true;
+      checkbox.addEventListener('click', function() {
+        if (this.checked) {
+          cardDiv.style.backgroundColor = 'rgba(66, 245, 87, 0.5)';
+          totalBooks += 1;
+          bookCount.innerHTML = totalBooks;
+        } else if (!this.checked && totalBooks > 0) {
+          totalBooks -= 1;
+          bookCount.innerHTML = totalBooks;
+          cardDiv.style.backgroundColor = '';
+        }
+      });
+    }
   }); 
-  console.log(allcardDivs);
 }
 
 showButton.addEventListener("click", () => {

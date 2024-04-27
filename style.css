@@ -46,6 +46,7 @@ body {
   height: 50px;
   margin-left: 10px;
   border-radius: 100px;
+  cursor: pointer;
 }
 
 #booklist {
