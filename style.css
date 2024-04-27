@@ -1,4 +1,4 @@
-* {border: 1px Solid red}
+* {border: 0px Solid red}
 
 body {
   height: 100vh;
@@ -6,6 +6,7 @@ body {
   display: grid;
   grid-template-columns: repeat(10, minmax(100px, 1fr));
   grid-template-rows: repeat(10, 1fr);
+  font-family: "PT Sans", sans-serif;
 }
 
 #header {
@@ -61,13 +62,17 @@ body {
   flex: 1;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
+  align-items:flex-start;
   height: 150px;
   min-width: 150px;
   border-radius: 30px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   border: 0.5px solidrgb(109, 109, 109)k;
+  font-size: 18px;
+}
+
+.bookCards div {
+  margin-left: 15px;
 }
 
 #formcontainer {

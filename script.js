@@ -18,13 +18,14 @@ function addBookToLibrary() {
   const author = document.querySelector("#author").value;
   const title = document.querySelector("#title").value;
   const pagenum = document.querySelector("#pagenum").value;
+  const pageNumInt = parseInt(pagenum);
   const pageCount = document.querySelector("#pageCount");
   const bookCount = document.querySelector("#bookCount");
 
   const addedBook = new Book(author, title, pagenum);
   
   myLibrary.push(addedBook);
-  const pageNumInt = parseInt(pagenum);
+
   totalPages += pageNumInt;
   totalBooks += 1;
 
@@ -41,25 +42,41 @@ function addBookToLibrary() {
   label.classList.add('switch');
   input.setAttribute('type', 'checkbox');
   span.classList.add('slider');
-
+  sliderDiv.classList.add('toggleContainer');
+  // adding txt to all the created divs
   titleDiv.innerHTML = `Title: ${title}`;
   authorDiv.innerHTML = `Author: ${author}`;
   pageDiv.innerHTML = `Page Count: ${pagenum}`;
   pageCount.innerHTML = totalPages;
   bookCount.innerHTML = totalBooks;
-
+  // adding the divs w added html to parent cardDiv
   cardDiv.appendChild(titleDiv);
   cardDiv.appendChild(authorDiv);
   cardDiv.appendChild(pageDiv);
-
+  // creating and adding toggle switch to cardDiv
   label.appendChild(input);
   label.appendChild(span);
   sliderDiv.appendChild(label);
   cardDiv.appendChild(sliderDiv);
-  
+  // adding the newly created card to page
   bookList.appendChild(cardDiv);
-}
 
+  const allcardDivs = document.querySelectorAll('.bookCards');
+
+  //for every bookcard, if the toggle is switched change background color
+  allcardDivs.forEach(cardDiv => {
+    const checkbox = cardDiv.querySelector('.toggleContainer .switch input');
+  
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        cardDiv.style.backgroundColor = 'rgba(66, 245, 87, 0.5)';
+      } else {
+        cardDiv.style.backgroundColor = '';
+      }
+    });
+  }); 
+  console.log(allcardDivs);
+}
 
 showButton.addEventListener("click", () => {
   dialog.showModal();
