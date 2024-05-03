@@ -56,7 +56,7 @@ body {
   font-weight: bolder;
 }
 
-#addbtn:hover, #closebtn:hover, #addbook:hover {
+#addbtn:hover, #closebtn:hover, #addbook:hover, .deleteDiv:hover {
   cursor:pointer;
   transform: scale(1.05);
 }

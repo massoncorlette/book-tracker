@@ -6,7 +6,7 @@ const bookList = document.querySelector("#booklist");
 let totalPages = 0;
 let totalBooks = 0;
 
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages) {
   this.title = title;
@@ -14,11 +14,11 @@ function Book(title, author, pages) {
   this.pages = pages;
 }
 
-function addBookToLibrary() {
+function editBookLibrary() {
   const author = document.querySelector("#author").value;
   const title = document.querySelector("#title").value;
   const pagenum = document.querySelector("#pagenum").value;
-  var pageNumInt = parseInt(pagenum);
+  let pageNumInt = parseInt(pagenum);
   const pageCount = document.querySelector("#pageCount");
   const bookCount = document.querySelector("#bookCount");
 
@@ -67,10 +67,16 @@ function addBookToLibrary() {
 
   const allcardDivs = document.querySelectorAll('.bookCards');
 
-  // for every bookcard, if the toggle is switched change background color
   allcardDivs.forEach(cardDiv => {
     const checkbox = cardDiv.querySelector('.toggleContainer .switch input');
-  // added custom property toggled to make sure doesn't loop through all cards
+    const deleteSelector = cardDiv.querySelector('.deleteDiv');
+      //removing book from library array and UI using splice
+      deleteSelector.addEventListener('click', () => {
+        cardDiv.remove();
+        myLibrary.splice(myLibrary.indexOf(cardDiv.title), 1);
+      });
+        
+    // added custom property toggled to make sure doesn't loop through all cards
     if (!checkbox.toggled) {
       checkbox.toggled = true;
       checkbox.addEventListener('click', function() {
@@ -92,8 +98,9 @@ function addBookToLibrary() {
         }
       });
     }
-  }); 
+  })
 }
+console.log(myLibrary);
 
 showButton.addEventListener("click", () => {
   dialog.showModal();
@@ -104,5 +111,5 @@ closeButton.addEventListener("click", () => {
 });
 
 addBook.addEventListener("click", () => {
-  addBookToLibrary();
+  editBookLibrary();
 });
