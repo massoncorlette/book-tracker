@@ -31,6 +31,7 @@ function editBookLibrary() {
   const pageDiv = document.createElement('div');
   const cardDiv = document.createElement('div');
   const sliderDiv = document.createElement('div');
+  const starsDiv = document.createElement('div');
   const label = document.createElement('label');
   const input = document.createElement('input');
   const span = document.createElement('span');
@@ -44,6 +45,7 @@ function editBookLibrary() {
   span.classList.add('slider');
   sliderDiv.classList.add('toggleContainer');
   deleteDiv.classList.add('deleteDiv');
+  starsDiv.classList.add('stars');
   deleteIcon.src = 'images/delete.svg';
   // adding txt to all the created divs
   titleDiv.innerHTML = `Title: ${title}`;
@@ -51,6 +53,14 @@ function editBookLibrary() {
   pageDiv.innerHTML = `Page Count: ${pagenum}`;
   pageCount.innerHTML = totalPages;
 
+  for (let i = 0; i < 6; i++) {
+    const starBtn = document.createElement('i');
+    starBtn.classList.add('fa-solid', 'fa-star');
+
+    starsDiv.appendChild(starBtn);
+  }
+
+  cardDiv.appendChild(starsDiv);
   deleteDiv.appendChild(deleteIcon);
   cardDiv.appendChild(deleteDiv);
   // adding the divs w added html to parent cardDiv
@@ -74,6 +84,20 @@ function editBookLibrary() {
       deleteSelector.addEventListener('click', () => {
         cardDiv.remove();
         myLibrary.splice(myLibrary.indexOf(cardDiv.title), 1);
+      });
+
+      const stars = cardDiv.querySelectorAll(".stars i");
+      // Loop through the "stars" NodeList
+      stars.forEach((star, index1) => {
+        // Add an event listener that runs a function when the "click" event is triggered
+        star.addEventListener("click", () => {
+          // Loop through the "stars" NodeList Again
+          stars.forEach((star, index2) => {
+            // Add the "active" class to the clicked star and any stars with a lower index
+            // and remove the "active" class from any stars with a higher index
+            index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+          });
+        });
       });
         
     // added custom property toggled to make sure doesn't loop through all cards
