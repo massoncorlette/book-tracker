@@ -42,7 +42,6 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  
 }
 
 #addbtn {
@@ -84,10 +83,10 @@ body {
   height: 150px;
   min-width: 150px;
   border-radius: 30px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
   border: 0.5px rgb(109, 109, 109);
   font-size: 18px;
-  background-color: whitesmoke;
+  background-color: rgb(255, 255, 255);
 }
 
 .bookCards div {
@@ -101,11 +100,10 @@ body {
 }
 
 #formcontainer input {
-  border-radius: 20px;
+  border-radius: 10px;
   font-weight: bold;
   padding: 10px;
   background-color: antiquewhite;
-  border-style:groove;
 }
 
 #closebtn {
@@ -187,14 +185,17 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+input {
+  outline-style: none;
+}
+
 form {
   display: flex;
   gap: 20px;
 }
 
 dialog {
-  border-radius: 30px;
-  background-color: rgba(250, 189, 22, 0.705)
+  background-color: rgba(46, 138, 34, 0.705);
 }
 
 #github {
@@ -202,10 +203,10 @@ dialog {
 }
 
 .stars i {
-  color: #e6e6e6;
+  color: #d8d8d8;
   font-size: 20px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.4s ease;
 }
 .stars i.active {
   color: #ff9c1a;

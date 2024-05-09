@@ -5,10 +5,12 @@ const addBook = document.querySelector("#addbook");
 const bookList = document.querySelector("#booklist");
 let totalPages = 0;
 let totalBooks = 0;
+let nextBookId = 0;
 
 let myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(id,title, author, pages) {
+  this.id = id;
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -18,11 +20,12 @@ function editBookLibrary() {
   const author = document.querySelector("#author").value;
   const title = document.querySelector("#title").value;
   const pagenum = document.querySelector("#pagenum").value;
+  let id = nextBookId++;
   let pageNumInt = parseInt(pagenum);
   const pageCount = document.querySelector("#pageCount");
   const bookCount = document.querySelector("#bookCount");
 
-  const addedBook = new Book(author, title, pagenum);
+  const addedBook = new Book(id,author, title, pagenum);
   
   myLibrary.push(addedBook);
 
@@ -56,7 +59,6 @@ function editBookLibrary() {
   for (let i = 0; i < 6; i++) {
     const starBtn = document.createElement('i');
     starBtn.classList.add('fa-solid', 'fa-star');
-
     starsDiv.appendChild(starBtn);
   }
 
@@ -79,17 +81,9 @@ function editBookLibrary() {
 
   allcardDivs.forEach(cardDiv => {
     const checkbox = cardDiv.querySelector('.toggleContainer .switch input');
-    const deleteSelector = cardDiv.querySelector('.deleteDiv');
-      //removing book from library array and UI using splice
-      deleteSelector.addEventListener('click', () => {
-        cardDiv.remove();
-        myLibrary.splice(myLibrary.indexOf(cardDiv.title), 1);
-      });
-
-      const stars = cardDiv.querySelectorAll(".stars i");
-      // Loop through the "stars" NodeList
-      stars.forEach((star, index1) => {
-        // Add an event listener that runs a function when the "click" event is triggered
+    const stars = cardDiv.querySelectorAll(".stars i");
+    
+      stars.forEach((star, index1) => { 
         star.addEventListener("click", () => {
           // Loop through the "stars" NodeList Again
           stars.forEach((star, index2) => {
@@ -123,6 +117,21 @@ function editBookLibrary() {
       });
     }
   })
+  const deleteSelector = cardDiv.querySelector('.deleteDiv');
+  //removing book from library array and UI using splice
+  deleteSelector.addEventListener('click', () => {
+    cardDiv.remove();
+    myLibrary.splice(myLibrary.indexOf(cardDiv.title), 1);
+    
+    if (totalBooks > 0) {
+      totalBooks -= 1;
+    }if (totalPages > 0) {
+      totalPages -= pageNumInt;
+      pageNumInt = 0;
+    }
+    bookCount.innerHTML = totalBooks;
+    pageCount.innerHTML = totalPages;
+  });
 }
 console.log(myLibrary);
 
